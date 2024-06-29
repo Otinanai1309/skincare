@@ -12,79 +12,61 @@ from .forms import BudgetForm, TransactionForm, CashFlowForm
 def home(request):
     return render(request, 'core/home.html')
 
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'core/product_list.html', {'products': products})
+# Product Views
+class ProductListView(ListView):
+    model = Product
+    template_name = 'core/product_list.html'
+    context_object_name = 'products'
 
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, 'core/product_detail.html', {'product': product})
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'core/product_detail.html'
+    context_object_name = 'product'
 
-def product_create(request):
-    if request.method == "POST":
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')
-    else:
-        form = ProductForm()
-    return render(request, 'core/product_form.html', {'form': form})
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'core/product_form.html'
+    success_url = reverse_lazy('product_list')
 
-def product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == "POST":
-        form = ProductForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'core/product_form.html', {'form': form})
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'core/product_form.html'
+    success_url = reverse_lazy('product_list')
 
-def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    product.delete()
-    return redirect('product_list')
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'core/product_confirm_delete.html'
+    success_url = reverse_lazy('product_list')
 
-def order_list(request):
-    orders = Order.objects.all()
-    return render(request, 'core/order_list.html', {'orders': orders})
+# Order Views
+class OrderListView(ListView):
+    model = Order
+    template_name = 'core/order_list.html'
+    context_object_name = 'orders'
 
-def order_create(request):
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('order_list')
-    else:
-        form = OrderForm()
-    return render(request, 'core/order_form.html', {'form': form})
+class OrderDetailView(DetailView):
+    model = Order
+    template_name = 'core/order_detail.html'
+    context_object_name = 'order'
 
-def order_detail(request, pk):
-    order = get_object_or_404(Order, pk=pk)
-    return render(request, 'core/order_detail.html', {'order': order})
+class OrderCreateView(CreateView):
+    model = Order
+    form_class = OrderForm
+    template_name = 'core/order_form.html'
+    success_url = reverse_lazy('order_list')
 
-def order_update(request, pk):
-    order = get_object_or_404(Order, pk=pk)
-    if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
-        if form.is_valid():
-            form.save()
-            return redirect('order_list')
-    else:
-        form = OrderForm(instance=order)
-    return render(request, 'core/order_form.html', {'form': form})
+class OrderUpdateView(UpdateView):
+    model = Order
+    form_class = OrderForm
+    template_name = 'core/order_form.html'
+    success_url = reverse_lazy('order_list')
 
-def order_delete(request, pk):
-    order = get_object_or_404(Order, pk=pk)
-    if request.method == 'POST':
-        order.delete()
-        return redirect('order_list')
-    return render(request, 'core/order_confirm_delete.html', {'order': order})
-  
-
-def home(request):
-    return render(request, 'core/home.html')
+class OrderDeleteView(DeleteView):
+    model = Order
+    template_name = 'core/order_confirm_delete.html'
+    success_url = reverse_lazy('order_list')
 
 # Budget Views
 class BudgetListView(ListView):
