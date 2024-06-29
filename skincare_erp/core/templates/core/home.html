@@ -1,0 +1,19 @@
+<!-- core/templates/core/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to the Skin Face Cream Production ERP</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'product_list' %}">Products</a></li>
+            <li><a href="{% url 'order_list' %}">Orders</a></li>
+            <li><a href="{% url 'budget_list' %}">Budgets</a></li>
+            <li><a href="{% url 'transaction_list' %}">Transactions</a></li>
+            <li><a href="{% url 'cashflow_list' %}">Cash Flows</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

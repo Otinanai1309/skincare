@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Products</h2>
+    <a href="{% url 'product_create' %}" class="btn btn-primary mb-2">Create New Product</a>
+    <ul class="list-group">
+        {% for product in products %}
+            <li class="list-group-item">
+                <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

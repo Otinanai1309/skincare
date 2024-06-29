@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Cash Flows{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Cash Flows</h2>
+    <a href="{% url 'cashflow_create' %}" class="btn btn-primary mb-2">Create New Cash Flow</a>
+    <ul class="list-group">
+        {% for cashflow in cashflows %}
+            <li class="list-group-item">
+                <a href="{% url 'cashflow_detail' cashflow.pk %}">{{ cashflow.description }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

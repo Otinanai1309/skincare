@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Cash Flow Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ cashflow.description }}</h2>
+    <p>Amount: {{ cashflow.amount }}</p>
+    <p>Type: {{ cashflow.get_flow_type_display }}</p>
+    <p>Date: {{ cashflow.date }}</p>
+    <a href="{% url 'cashflow_update' cashflow.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'cashflow_delete' cashflow.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'cashflow_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

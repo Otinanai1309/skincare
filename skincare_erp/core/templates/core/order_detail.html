@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Order Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Order #{{ order.pk }}</h2>
+    <p>Product: {{ order.product.name }}</p>
+    <p>Quantity: {{ order.quantity }}</p>
+    <p>Total Price: {{ order.total_price }}</p>
+    <p>Status: {{ order.status }}</p>
+    <a href="{% url 'order_update' order.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'order_delete' order.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'order_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

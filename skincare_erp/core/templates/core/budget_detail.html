@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Budget Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ budget.name }}</h2>
+    <p>Amount: {{ budget.amount }}</p>
+    <p>Created At: {{ budget.created_at }}</p>
+    <p>Updated At: {{ budget.updated_at }}</p>
+    <a href="{% url 'budget_update' budget.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'budget_delete' budget.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'budget_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}
