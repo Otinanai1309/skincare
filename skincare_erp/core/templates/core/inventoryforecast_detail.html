@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Inventory Forecast Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Inventory Forecast Detail</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Forecast for {{ inventoryforecast.product.name }}</h5>
+            <p class="card-text">Forecast Date: {{ inventoryforecast.forecast_date }}</p>
+            <p class="card-text">Forecast Quantity: {{ inventoryforecast.forecast_quantity }}</p>
+            <a href="{% url 'inventoryforecast_update' inventoryforecast.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'inventoryforecast_delete' inventoryforecast.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'inventoryforecast_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

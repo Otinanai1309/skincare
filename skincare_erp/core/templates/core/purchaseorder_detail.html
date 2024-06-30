@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Purchase Order Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Purchase Order Detail</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Order from {{ purchaseorder.supplier.name }}</h5>
+            <p class="card-text">Order Date: {{ purchaseorder.order_date }}</p>
+            <p class="card-text">Expected Date: {{ purchaseorder.expected_date }}</p>
+            <p class="card-text">Total Amount: {{ purchaseorder.total_amount }}</p>
+            <h6>Items:</h6>
+            <ul>
+                {% for item in purchaseorder.items.all %}
+                <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Unit Price: {{ item.unit_price }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'purchaseorder_update' purchaseorder.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'purchaseorder_delete' purchaseorder.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'purchaseorder_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

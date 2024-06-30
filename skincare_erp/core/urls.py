@@ -5,6 +5,9 @@ from .views import (
     BudgetListView, BudgetDetailView, BudgetCreateView, BudgetUpdateView, BudgetDeleteView,
     TransactionListView, TransactionDetailView, TransactionCreateView, TransactionUpdateView, TransactionDeleteView,
     CashFlowListView, CashFlowDetailView, CashFlowCreateView, CashFlowUpdateView, CashFlowDeleteView,
+    SupplierListView, SupplierDetailView, SupplierCreateView, SupplierUpdateView, SupplierDeleteView,
+    PurchaseOrderListView, PurchaseOrderDetailView, PurchaseOrderCreateView, PurchaseOrderUpdateView, PurchaseOrderDeleteView,
+    InventoryForecastListView, InventoryForecastDetailView, InventoryForecastCreateView, InventoryForecastUpdateView, InventoryForecastDeleteView,
     home
 )
 
@@ -39,4 +42,25 @@ urlpatterns = [
     path('cashflows/<int:pk>/', CashFlowDetailView.as_view(), name='cashflow_detail'),
     path('cashflows/<int:pk>/edit/', CashFlowUpdateView.as_view(), name='cashflow_update'),
     path('cashflows/<int:pk>/delete/', CashFlowDeleteView.as_view(), name='cashflow_delete'),
+ 
+    # Supplier URLs
+    path('suppliers/', SupplierListView.as_view(), name='supplier_list'),
+    path('suppliers/new/', SupplierCreateView.as_view(), name='supplier_create'),
+    path('suppliers/<int:pk>/', SupplierDetailView.as_view(), name='supplier_detail'),
+    path('suppliers/<int:pk>/edit/', SupplierUpdateView.as_view(), name='supplier_update'),
+    path('suppliers/<int:pk>/delete/', SupplierDeleteView.as_view(), name='supplier_delete'),
+
+    # PurchaseOrder URLs
+    path('purchaseorders/', PurchaseOrderListView.as_view(), name='purchaseorder_list'),
+    path('purchaseorders/new/', PurchaseOrderCreateView.as_view(), name='purchaseorder_create'),
+    path('purchaseorders/<int:pk>/', PurchaseOrderDetailView.as_view(), name='purchaseorder_detail'),
+    path('purchaseorders/<int:pk>/edit/', PurchaseOrderUpdateView.as_view(), name='purchaseorder_update'),
+    path('purchaseorders/<int:pk>/delete/', PurchaseOrderDeleteView.as_view(), name='purchaseorder_delete'),
+
+    # InventoryForecast URLs
+    path('inventoryforecasts/', InventoryForecastListView.as_view(), name='inventoryforecast_list'),
+    path('inventoryforecasts/new/', InventoryForecastCreateView.as_view(), name='inventoryforecast_create'),
+    path('inventoryforecasts/<int:pk>/', InventoryForecastDetailView.as_view(), name='inventoryforecast_detail'),
+    path('inventoryforecasts/<int:pk>/edit/', InventoryForecastUpdateView.as_view(), name='inventoryforecast_update'),
+    path('inventoryforecasts/<int:pk>/delete/', InventoryForecastDeleteView.as_view(), name='inventoryforecast_delete'),
 ]

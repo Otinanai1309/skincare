@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Inventory Forecast List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Inventory Forecast List</h2>
+    <a href="{% url 'inventoryforecast_create' %}" class="btn btn-primary mb-3">Add Inventory Forecast</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Forecast Date</th>
+                <th>Forecast Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inventoryforecast in inventoryforecasts %}
+            <tr>
+                <td>{{ inventoryforecast.product.name }}</td>
+                <td>{{ inventoryforecast.forecast_date }}</td>
+                <td>{{ inventoryforecast.forecast_quantity }}</td>
+                <td>
+                    <a href="{% url 'inventoryforecast_detail' inventoryforecast.pk %}" class="btn btn-info btn-sm">View</a>
+                    <a href="{% url 'inventoryforecast_update' inventoryforecast.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'inventoryforecast_delete' inventoryforecast.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

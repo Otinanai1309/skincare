@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Supplier Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Supplier Detail</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ supplier.name }}</h5>
+            <p class="card-text">Contact Name: {{ supplier.contact_name }}</p>
+            <p class="card-text">Contact Email: {{ supplier.contact_email }}</p>
+            <p class="card-text">Contact Phone: {{ supplier.contact_phone }}</p>
+            <p class="card-text">Address: {{ supplier.address }}</p>
+            <a href="{% url 'supplier_update' supplier.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'supplier_delete' supplier.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -5,9 +5,13 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from .models import Product, Order
 from .models import Budget, Transaction, CashFlow
+from .models import Supplier, PurchaseOrder, PurchaseOrderItem, InventoryForecast
+
 
 from .forms import ProductForm, OrderForm
 from .forms import BudgetForm, TransactionForm, CashFlowForm
+from .forms import SupplierForm, PurchaseOrderForm, PurchaseOrderItemForm, InventoryForecastForm
+
 
 def home(request):
     return render(request, 'core/home.html')
@@ -151,3 +155,87 @@ class CashFlowDeleteView(DeleteView):
     model = CashFlow
     template_name = 'core/cashflow_confirm_delete.html'
     success_url = reverse_lazy('cashflow_list')
+    
+# Supplier Views
+class SupplierListView(ListView):
+    model = Supplier
+    template_name = 'core/supplier_list.html'
+    context_object_name = 'suppliers'
+
+class SupplierDetailView(DetailView):
+    model = Supplier
+    template_name = 'core/supplier_detail.html'
+    context_object_name = 'supplier'
+
+class SupplierCreateView(CreateView):
+    model = Supplier
+    form_class = SupplierForm
+    template_name = 'core/supplier_form.html'
+    success_url = reverse_lazy('supplier_list')
+
+class SupplierUpdateView(UpdateView):
+    model = Supplier
+    form_class = SupplierForm
+    template_name = 'core/supplier_form.html'
+    success_url = reverse_lazy('supplier_list')
+
+class SupplierDeleteView(DeleteView):
+    model = Supplier
+    template_name = 'core/supplier_confirm_delete.html'
+    success_url = reverse_lazy('supplier_list')
+
+# PurchaseOrder Views
+class PurchaseOrderListView(ListView):
+    model = PurchaseOrder
+    template_name = 'core/purchaseorder_list.html'
+    context_object_name = 'purchaseorders'
+
+class PurchaseOrderDetailView(DetailView):
+    model = PurchaseOrder
+    template_name = 'core/purchaseorder_detail.html'
+    context_object_name = 'purchaseorder'
+
+class PurchaseOrderCreateView(CreateView):
+    model = PurchaseOrder
+    form_class = PurchaseOrderForm
+    template_name = 'core/purchaseorder_form.html'
+    success_url = reverse_lazy('purchaseorder_list')
+
+class PurchaseOrderUpdateView(UpdateView):
+    model = PurchaseOrder
+    form_class = PurchaseOrderForm
+    template_name = 'core/purchaseorder_form.html'
+    success_url = reverse_lazy('purchaseorder_list')
+
+class PurchaseOrderDeleteView(DeleteView):
+    model = PurchaseOrder
+    template_name = 'core/purchaseorder_confirm_delete.html'
+    success_url = reverse_lazy('purchaseorder_list')
+
+# InventoryForecast Views
+class InventoryForecastListView(ListView):
+    model = InventoryForecast
+    template_name = 'core/inventoryforecast_list.html'
+    context_object_name = 'inventoryforecasts'
+
+class InventoryForecastDetailView(DetailView):
+    model = InventoryForecast
+    template_name = 'core/inventoryforecast_detail.html'
+    context_object_name = 'inventoryforecast'
+
+class InventoryForecastCreateView(CreateView):
+    model = InventoryForecast
+    form_class = InventoryForecastForm
+    template_name = 'core/inventoryforecast_form.html'
+    success_url = reverse_lazy('inventoryforecast_list')
+
+class InventoryForecastUpdateView(UpdateView):
+    model = InventoryForecast
+    form_class = InventoryForecastForm
+    template_name = 'core/inventoryforecast_form.html'
+    success_url = reverse_lazy('inventoryforecast_list')
+
+class InventoryForecastDeleteView(DeleteView):
+    model = InventoryForecast
+    template_name = 'core/inventoryforecast_confirm_delete.html'
+    success_url = reverse_lazy('inventoryforecast_list')
